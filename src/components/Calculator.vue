@@ -50,7 +50,6 @@ export default {
   watch: {
     next: function () {
       const temp = this.result;
-      console.log(temp);
       this.result = "Loading";
       this.disableButtons = true;
       setTimeout(() => {
