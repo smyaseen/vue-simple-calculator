@@ -5,7 +5,11 @@
       <br />
       <div :key="buttonArr" v-for="buttonArr in buttons" class="btns">
         <div :key="button" v-for="button in buttonArr">
-          <Button :text="button" @onClick="onButtonClick(button)" />
+          <Button
+            :text="button"
+            @onClick="onButtonClick(button)"
+            :disableButtons="disableButtons"
+          />
         </div>
       </div>
     </div>
@@ -29,10 +33,31 @@ export default {
       next: "",
       result: "0",
       operator: "",
+      disableButtons: false,
     };
   },
   components: {
     Button,
+  },
+  // updated() {
+  //   if (this.operator)
+  //   this.result = "Loading";
+  //   setTimeout(() => {
+  //     this.result = "";
+  //     console.log(this.result);
+  //   }, 1000);
+  // },
+  watch: {
+    next: function () {
+      const temp = this.result;
+      console.log(temp);
+      this.result = "Loading";
+      this.disableButtons = true;
+      setTimeout(() => {
+        this.result = temp;
+        this.disableButtons = false;
+      }, 2000);
+    },
   },
   methods: {
     onButtonClick(text) {

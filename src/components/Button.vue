@@ -1,5 +1,5 @@
 <template>
-  <button @click="$emit('onClick')" class="btn">
+  <button @click="$emit('onClick')" class="btn" :disabled="disableButtons">
     {{ text }}
   </button>
 </template>
@@ -9,6 +9,7 @@ export default {
   name: "Button",
   props: {
     text: String,
+    disableButtons: Boolean,
   },
   emits: ["onClick"],
 };
